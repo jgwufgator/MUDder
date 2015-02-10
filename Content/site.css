@@ -1,0 +1,84 @@
+.js-body {
+	width: 90%;
+	background-color: black;
+
+}
+.js-command-form {
+	width: 95%;
+	bottom: 5px;
+	position: absolute;
+}
+.js-command-input {
+	width:100%;	
+}
+
+p {
+	margin: 0;
+}
+
+.js-room-description{
+	color: #0099FF;
+}
+
+.js-room-exits {
+	color: #CC0099;	
+}
+
+.shadowLayer{	
+}
+
+.map-canvas {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+}
+
+.base-level{
+	z-index: -1;
+	background-color: white
+}
+
+.level0{
+	z-index:0;	
+}
+
+.level0Shadow{
+	z-index:1;
+}
+
+.level1{
+	z-index: 2;
+}
+
+.level1Shadow{
+	z-index:3;
+}
+
+.level2{
+	z-index: 4;
+}
+
+.level2Shadow{
+	z-index:5;
+}
+
+.level3{
+	z-index: 6;
+}
+
+.level3Shadow{
+	z-index:7;
+}
+
+.level4{
+	z-index: 7;
+}
+
+.level4Shadow{
+	z-index:8;
+}
+
+.js-refusal{
+	color: #ff0000;
+
+}

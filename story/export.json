@@ -1,0 +1,1267 @@
+{
+  "rooms" : {
+    "0,5,4" : {
+      "desc" : "",
+      "exits" : {
+        "ne" : {
+          "id" : "1,4,3",
+          "remoteDesc" : "the north end of the west tower."
+        },
+        "se" : {
+          "id" : "1,6,3",
+          "remoteDesc" : "the south end of the west tower."
+        }
+      },
+      "id" : "0,5,4",
+      "position" : {
+        "x" : 0,
+        "y" : 5,
+        "z" : 4
+      },
+      "remoteDesc" : "the west end of the west tower."
+    },
+    "1,4,3" : {
+      "desc" : "",
+      "exits" : {
+        "s" : {
+          "id" : "1,5,2",
+          "remoteDesc" : "the entrance to the west tower."
+        },
+        "sw" : {
+          "id" : "0,5,4",
+          "remoteDesc" : "the west end of the west tower."
+        }
+      },
+      "id" : "1,4,3",
+      "position" : {
+        "x" : 1,
+        "y" : 4,
+        "z" : 3
+      },
+      "remoteDesc" : "the north end of the west tower."
+    },
+    "1,5,2" : {
+      "desc" : "You are at the entrance to the west tower",
+      "exits" : {
+        "e" : {
+          "id" : "2,5,2",
+          "remoteDesc" : "2,5,2"
+        },
+        "n" : {
+          "id" : "1,4,3",
+          "remoteDesc" : "the north end of the west tower."
+        },
+        "s" : {
+          "id" : "1,6,3",
+          "remoteDesc" : "the south end of the west tower."
+        }
+      },
+      "id" : "1,5,2",
+      "position" : {
+        "x" : 1,
+        "y" : 5,
+        "z" : 2
+      },
+      "remoteDesc" : "the entrance to the west tower."
+    },
+    "1,6,3" : {
+      "desc" : "",
+      "exits" : {
+        "n" : {
+          "id" : "1,5,2",
+          "remoteDesc" : "the entrance to the west tower."
+        },
+        "nw" : {
+          "id" : "0,5,4",
+          "remoteDesc" : "the west end of the west tower."
+        }
+      },
+      "id" : "1,6,3",
+      "position" : {
+        "x" : 1,
+        "y" : 6,
+        "z" : 3
+      },
+      "remoteDesc" : "the south end of the west tower."
+    },
+    "10,5,4" : {
+      "desc" : "",
+      "exits" : {
+        "nw" : {
+          "id" : "9,4,3",
+          "remoteDesc" : "the north end of the east tower."
+        },
+        "sw" : {
+          "id" : "9,6,3",
+          "remoteDesc" : "the south end of the west tower."
+        }
+      },
+      "id" : "10,5,4",
+      "position" : {
+        "x" : 10,
+        "y" : 5,
+        "z" : 4
+      },
+      "remoteDesc" : "the east end of the west tower."
+    },
+    "2,2,2" : {
+      "desc" : "",
+      "exits" : {
+        "ne" : {
+          "id" : "3,1,3",
+          "remoteDesc" : "the north arrowslit and staircase up the west end of the northwest tower."
+        },
+        "se" : {
+          "id" : "3,3,2",
+          "remoteDesc" : "the entrance to the northwest tower."
+        }
+      },
+      "id" : "2,2,2",
+      "position" : {
+        "x" : 2,
+        "y" : 2,
+        "z" : 2
+      },
+      "remoteDesc" : "the west arrowslit and staircase up the west end of the northwest tower."
+    },
+    "2,5,2" : {
+      "desc" : "You are at 2,5,2.",
+      "exits" : {
+        "e" : {
+          "id" : "3,5,2",
+          "remoteDesc" : "3,5,2."
+        },
+        "w" : {
+          "id" : "1,5,2",
+          "remoteDesc" : "the entrance to the west tower."
+        }
+      },
+      "id" : "2,5,2",
+      "position" : {
+        "x" : 2,
+        "y" : 5,
+        "z" : 2
+      },
+      "remoteDesc" : "2,5,2."
+    },
+    "2,8,2" : {
+      "desc" : "You are at the top of the southwest tower, looking at the west battlement.",
+      "exits" : {
+        "ne" : {
+          "id" : "3,7,2",
+          "remoteDesc" : "the north battlement of the southwest tower."
+        },
+        "se" : {
+          "id" : "3,9,2",
+          "remoteDesc" : "the south battlement of the southwest tower."
+        }
+      },
+      "id" : "2,8,2",
+      "position" : {
+        "x" : 2,
+        "y" : 8,
+        "z" : 2
+      },
+      "remoteDesc" : "the west battlement of the southwest tower."
+    },
+    "3,1,3" : {
+      "desc" : "",
+      "exits" : {
+        "se" : {
+          "id" : "4,2,4",
+          "remoteDesc" : "the east arrowslit and staircase up the east end of the northwest tower."
+        },
+        "sw" : {
+          "id" : "2,2,2",
+          "remoteDesc" : "the west arrowslit and staircase up the west end of the northwest tower."
+        }
+      },
+      "id" : "3,1,3",
+      "position" : {
+        "x" : 3,
+        "y" : 1,
+        "z" : 3
+      },
+      "remoteDesc" : "the north arrowslit and staircase up the west end of the northwest tower."
+    },
+    "3,2,4" : {
+      "desc" : "",
+      "exits" : {
+        "e" : {
+          "id" : "4,2,4",
+          "remoteDesc" : "the east arrowslit and staircase up the east end of the northwest tower."
+        }
+      },
+      "id" : "3,2,4",
+      "position" : {
+        "x" : 3,
+        "y" : 2,
+        "z" : 4
+      },
+      "remoteDesc" : "the pinnacle of the northwest tower."
+    },
+    "3,3,2" : {
+      "desc" : "",
+      "exits" : {
+        "nw" : {
+          "id" : "2,2,2",
+          "remoteDesc" : "the west arrowslit and staircase up the west end of the northwest tower."
+        },
+        "s" : {
+          "id" : "3,4,2",
+          "remoteDesc" : "the northwest hall."
+        }
+      },
+      "id" : "3,3,2",
+      "position" : {
+        "x" : 3,
+        "y" : 3,
+        "z" : 2
+      },
+      "remoteDesc" : "the entrance to the northwest tower."
+    },
+    "3,4,2" : {
+      "desc" : "",
+      "exits" : {
+        "n" : {
+          "id" : "3,3,2",
+          "remoteDesc" : "the entrance to the northwest tower."
+        },
+        "s" : {
+          "id" : "3,5,2",
+          "remoteDesc" : "3,5,2."
+        }
+      },
+      "id" : "3,4,2",
+      "position" : {
+        "x" : 3,
+        "y" : 4,
+        "z" : 2
+      },
+      "remoteDesc" : "the northwest hall."
+    },
+    "3,5,2" : {
+      "desc" : "You are at 3,5,2.",
+      "exits" : {
+        "e" : {
+          "id" : "4,5,2",
+          "remoteDesc" : "west of the top of the staircase."
+        },
+        "n" : {
+          "id" : "3,4,2",
+          "remoteDesc" : "the northwest hall."
+        },
+        "s" : {
+          "id" : "3,6,2",
+          "remoteDesc" : "the visiting royalty room."
+        },
+        "w" : {
+          "id" : "2,5,2",
+          "remoteDesc" : "2,5,2."
+        }
+      },
+      "id" : "3,5,2",
+      "position" : {
+        "x" : 3,
+        "y" : 5,
+        "z" : 2
+      },
+      "remoteDesc" : "3,5,2."
+    },
+    "3,6,2" : {
+      "desc" : "",
+      "exits" : {
+        "n" : {
+          "id" : "3,5,2",
+          "remoteDesc" : "3,5,2."
+        }
+      },
+      "id" : "3,6,2",
+      "position" : {
+        "x" : 3,
+        "y" : 6,
+        "z" : 2
+      },
+      "remoteDesc" : "the visiting royalty room."
+    },
+    "3,7,2" : {
+      "desc" : "You are at the top of the southwest tower, looking at the north battlement.",
+      "exits" : {
+        "se" : {
+          "id" : "4,8,2",
+          "remoteDesc" : "the east battlement of the southwest tower."
+        },
+        "sw" : {
+          "id" : "2,8,2",
+          "remoteDesc" : "the west battlement of the southwest tower."
+        }
+      },
+      "id" : "3,7,2",
+      "position" : {
+        "x" : 3,
+        "y" : 7,
+        "z" : 2
+      },
+      "remoteDesc" : "the north battlement of the southwest tower."
+    },
+    "3,8,1" : {
+      "desc" : "the center of the southwest tower.",
+      "exits" : {
+        "ne" : {
+          "id" : "4,7,0",
+          "remoteDesc" : "the entrance to the southwest tower."
+        },
+        "s" : {
+          "id" : "3,9,2",
+          "remoteDesc" : "the south battlement of the southwest tower."
+        }
+      },
+      "id" : "3,8,1",
+      "position" : {
+        "x" : 3,
+        "y" : 8,
+        "z" : 1
+      },
+      "remoteDesc" : "the center southwest tower."
+    },
+    "3,9,2" : {
+      "desc" : "You are at the top of the southwest tower, looking at the south battlement.",
+      "exits" : {
+        "n" : {
+          "id" : "3,8,1",
+          "remoteDesc" : "the center southwest tower."
+        },
+        "ne" : {
+          "id" : "4,8,2",
+          "remoteDesc" : "the east battlement of the southwest tower."
+        },
+        "nw" : {
+          "id" : "2,8,2",
+          "remoteDesc" : "the west battlement of the southwest tower."
+        }
+      },
+      "id" : "3,9,2",
+      "position" : {
+        "x" : 3,
+        "y" : 9,
+        "z" : 2
+      },
+      "remoteDesc" : "the south battlement of the southwest tower."
+    },
+    "4,2,4" : {
+      "desc" : "",
+      "exits" : {
+        "nw" : {
+          "id" : "3,1,3",
+          "remoteDesc" : "the north arrowslit and staircase up the west end of the northwest tower."
+        },
+        "w" : {
+          "id" : "3,2,4",
+          "remoteDesc" : "the pinnacle of the northwest tower."
+        }
+      },
+      "id" : "4,2,4",
+      "position" : {
+        "x" : 4,
+        "y" : 2,
+        "z" : 4
+      },
+      "remoteDesc" : "the east arrowslit and staircase up the east end of the northwest tower."
+    },
+    "4,3,2" : {
+      "desc" : "",
+      "exits" : {
+        "e" : {
+          "id" : "5,3,2",
+          "remoteDesc" : "the west center of the rear hallway."
+        },
+        "s" : {
+          "id" : "4,4,2",
+          "remoteDesc" : "the west rear hallway."
+        }
+      },
+      "id" : "4,3,2",
+      "position" : {
+        "x" : 4,
+        "y" : 3,
+        "z" : 2
+      },
+      "remoteDesc" : "the northwest section of the rear hallway."
+    },
+    "4,4,2" : {
+      "desc" : "",
+      "exits" : {
+        "n" : {
+          "id" : "4,3,2",
+          "remoteDesc" : "the northwest section of the rear hallway."
+        },
+        "s" : {
+          "id" : "4,5,2",
+          "remoteDesc" : "west of the top of the staircase."
+        }
+      },
+      "id" : "4,4,2",
+      "position" : {
+        "x" : 4,
+        "y" : 4,
+        "z" : 2
+      },
+      "remoteDesc" : "the west rear hallway."
+    },
+    "4,5,2" : {
+      "desc" : "You are one square west of the top of the staircase in the main residence hall.",
+      "exits" : {
+        "e" : {
+          "id" : "5,5,2",
+          "remoteDesc" : "the top of the staircase."
+        },
+        "n" : {
+          "id" : "4,4,2",
+          "remoteDesc" : "the west rear hallway."
+        },
+        "w" : {
+          "id" : "3,5,2",
+          "remoteDesc" : "3,5,2."
+        }
+      },
+      "id" : "4,5,2",
+      "position" : {
+        "x" : 4,
+        "y" : 5,
+        "z" : 2
+      },
+      "remoteDesc" : "west of the top of the staircase."
+    },
+    "4,6,1" : {
+      "desc" : "You are on the northwest staircase.",
+      "exits" : {
+        "ne" : {
+          "id" : "5,5,2",
+          "remoteDesc" : "the top of the staircase."
+        },
+        "se" : {
+          "id" : "5,7,0",
+          "remoteDesc" : "the castle's main hall."
+        }
+      },
+      "id" : "4,6,1",
+      "position" : {
+        "x" : 4,
+        "y" : 6,
+        "z" : 1
+      },
+      "remoteDesc" : "the northwest staircase."
+    },
+    "4,7,0" : {
+      "desc" : "",
+      "exits" : {
+        "e" : {
+          "id" : "5,7,0",
+          "remoteDesc" : "the castle's main hall."
+        },
+        "sw" : {
+          "id" : "3,8,1",
+          "remoteDesc" : "the center southwest tower."
+        }
+      },
+      "id" : "4,7,0",
+      "position" : {
+        "x" : 4,
+        "y" : 7,
+        "z" : 0
+      },
+      "remoteDesc" : "the entrance to the southwest tower."
+    },
+    "4,8,2" : {
+      "desc" : "You are at the top of the southwest tower, looking at the east battlement.",
+      "exits" : {
+        "nw" : {
+          "id" : "3,7,2",
+          "remoteDesc" : "the north battlement of the southwest tower."
+        },
+        "sw" : {
+          "id" : "3,9,2",
+          "remoteDesc" : "the south battlement of the southwest tower."
+        }
+      },
+      "id" : "4,8,2",
+      "position" : {
+        "x" : 4,
+        "y" : 8,
+        "z" : 2
+      },
+      "remoteDesc" : "the east battlement of the southwest tower."
+    },
+    "4,9,0" : {
+      "desc" : "You are in the guard station",
+      "exits" : {
+        "e" : {
+          "id" : "5,9,0",
+          "remoteDesc" : "the portcullis landing area."
+        }
+      },
+      "id" : "4,9,0",
+      "position" : {
+        "x" : 4,
+        "y" : 9,
+        "z" : 0
+      },
+      "remoteDesc" : "the west guard station."
+    },
+    "5,10,0" : {
+      "desc" : "You are in front of the castle gate.  The portcullis is open.",
+      "exits" : {
+        "n" : {
+          "id" : "5,9,0",
+          "remoteDesc" : "the portcullis landing area."
+        },
+        "s" : {
+          "id" : "5,11,0",
+          "remoteDesc" : "the north end of the drawbridge"
+        }
+      },
+      "id" : "5,10,0",
+      "position" : {
+        "x" : 5,
+        "y" : 10,
+        "z" : 0
+      },
+      "remoteDesc" : ""
+    },
+    "5,11,0" : {
+      "desc" : "You are standing on the south end of the drawbridge.",
+      "exits" : {
+        "n" : {
+          "id" : "5,10,0",
+          "remoteDesc" : ""
+        },
+        "s" : {
+          "id" : "5,12,0",
+          "remoteDesc" : "the south end of the drawbridge"
+        }
+      },
+      "id" : "5,11,0",
+      "position" : {
+        "x" : 5,
+        "y" : 11,
+        "z" : 0
+      },
+      "remoteDesc" : "the north end of the drawbridge"
+    },
+    "5,12,0" : {
+      "desc" : "You are standing on the south end of the drawbridge.  Across the drawbridge is an castle.",
+      "exits" : {
+        "n" : {
+          "id" : "5,11,0",
+          "remoteDesc" : "the north end of the drawbridge"
+        },
+        "s" : {
+          "id" : "5,13,0",
+          "remoteDesc" : "the outside edge of the drawbridge"
+        }
+      },
+      "id" : "5,12,0",
+      "position" : {
+        "x" : 5,
+        "y" : 12,
+        "z" : 0
+      },
+      "remoteDesc" : "the south end of the drawbridge"
+    },
+    "5,13,0" : {
+      "desc" : "You are standing in front of the drawbridge.",
+      "exits" : {
+        "n" : {
+          "id" : "5,12,0",
+          "remoteDesc" : "the south end of the drawbridge"
+        },
+        "se" : {
+          "id" : "6,14,0",
+          "remoteDesc" : "the stables"
+        }
+      },
+      "id" : "5,13,0",
+      "position" : {
+        "x" : 5,
+        "y" : 13,
+        "z" : 0
+      },
+      "remoteDesc" : "the outside edge of the drawbridge"
+    },
+    "5,2,2" : {
+      "desc" : "",
+      "exits" : {
+        "s" : {
+          "id" : "5,3,2",
+          "remoteDesc" : "the west center of the rear hallway."
+        }
+      },
+      "id" : "5,2,2",
+      "position" : {
+        "x" : 5,
+        "y" : 2,
+        "z" : 2
+      },
+      "remoteDesc" : "a heavy wooden door."
+    },
+    "5,3,2" : {
+      "desc" : "",
+      "exits" : {
+        "e" : {
+          "id" : "6,3,2",
+          "remoteDesc" : "the northeast section of the rear hallway."
+        },
+        "n" : {
+          "id" : "5,2,2",
+          "remoteDesc" : "a heavy wooden door."
+        },
+        "w" : {
+          "id" : "4,3,2",
+          "remoteDesc" : "the northwest section of the rear hallway."
+        }
+      },
+      "id" : "5,3,2",
+      "position" : {
+        "x" : 5,
+        "y" : 3,
+        "z" : 2
+      },
+      "remoteDesc" : "the west center of the rear hallway."
+    },
+    "5,4,2" : {
+      "desc" : "",
+      "exits" : {
+        "s" : {
+          "id" : "5,5,2",
+          "remoteDesc" : "the top of the staircase."
+        }
+      },
+      "id" : "5,4,2",
+      "position" : {
+        "x" : 5,
+        "y" : 4,
+        "z" : 2
+      },
+      "remoteDesc" : "some room."
+    },
+    "5,5,2" : {
+      "desc" : "You are at the top of the staircase in the main residence hall.",
+      "exits" : {
+        "e" : {
+          "id" : "6,5,2",
+          "remoteDesc" : "the top of the staircase."
+        },
+        "n" : {
+          "id" : "5,4,2",
+          "remoteDesc" : "some room."
+        },
+        "se" : {
+          "id" : "6,6,1",
+          "remoteDesc" : "the northeast staircase."
+        },
+        "sw" : {
+          "id" : "4,6,1",
+          "remoteDesc" : "the northwest staircase."
+        },
+        "w" : {
+          "id" : "4,5,2",
+          "remoteDesc" : "west of the top of the staircase."
+        }
+      },
+      "id" : "5,5,2",
+      "position" : {
+        "x" : 5,
+        "y" : 5,
+        "z" : 2
+      },
+      "remoteDesc" : "the top of the staircase."
+    },
+    "5,6,0" : {
+      "desc" : "You are in the castle's dining room.",
+      "exits" : {
+        "s" : {
+          "id" : "5,7,0",
+          "remoteDesc" : "the castle's main hall."
+        }
+      },
+      "id" : "5,6,0",
+      "position" : {
+        "x" : 5,
+        "y" : 6,
+        "z" : 0
+      },
+      "remoteDesc" : "the dining room."
+    },
+    "5,7,0" : {
+      "desc" : "",
+      "exits" : {
+        "e" : {
+          "id" : "6,7,0",
+          "remoteDesc" : "the entrance to the southeast tower."
+        },
+        "n" : {
+          "id" : "5,6,0",
+          "remoteDesc" : "the dining room."
+        },
+        "ne" : {
+          "id" : "6,6,1",
+          "remoteDesc" : "the northeast staircase."
+        },
+        "nw" : {
+          "id" : "4,6,1",
+          "remoteDesc" : "the northwest staircase."
+        },
+        "s" : {
+          "id" : "5,8,0",
+          "remoteDesc" : "the catle foyer."
+        },
+        "w" : {
+          "id" : "4,7,0",
+          "remoteDesc" : "the entrance to the southwest tower."
+        }
+      },
+      "id" : "5,7,0",
+      "position" : {
+        "x" : 5,
+        "y" : 7,
+        "z" : 0
+      },
+      "remoteDesc" : "the castle's main hall."
+    },
+    "5,8,0" : {
+      "desc" : "You are in the castle foyer.",
+      "exits" : {
+        "n" : {
+          "id" : "5,7,0",
+          "remoteDesc" : "the castle's main hall."
+        },
+        "s" : {
+          "id" : "5,9,0",
+          "remoteDesc" : "the portcullis landing area."
+        }
+      },
+      "id" : "5,8,0",
+      "position" : {
+        "x" : 5,
+        "y" : 8,
+        "z" : 0
+      },
+      "remoteDesc" : "the catle foyer."
+    },
+    "5,9,0" : {
+      "desc" : "Underneath the portcullis.",
+      "exits" : {
+        "e" : {
+          "id" : "6,9,0",
+          "remoteDesc" : "east guard station"
+        },
+        "n" : {
+          "id" : "5,8,0",
+          "remoteDesc" : "the catle foyer."
+        },
+        "s" : {
+          "id" : "5,10,0",
+          "remoteDesc" : ""
+        },
+        "w" : {
+          "id" : "4,9,0",
+          "remoteDesc" : "west guard station"
+        }
+      },
+      "id" : "5,9,0",
+      "position" : {
+        "x" : 5,
+        "y" : 9,
+        "z" : 0
+      },
+      "remoteDesc" : "the portcullis landing area."
+    },
+    "6,14,0" : {
+      "desc" : "You are standing in the royal stables.",
+      "exits" : {
+        "nw" : {
+          "id" : "5,13,0",
+          "remoteDesc" : "the outside edge of the drawbridge"
+        }
+      },
+      "id" : "6,14,0",
+      "position" : {
+        "x" : 6,
+        "y" : 14,
+        "z" : 0
+      },
+      "remoteDesc" : "the stables"
+    },
+    "6,2,4" : {
+      "desc" : "",
+      "exits" : {
+        "e" : {
+          "id" : "7,2,4",
+          "remoteDesc" : "the pinnacle of the northeast tower."
+        },
+        "ne" : {
+          "id" : "7,1,3",
+          "remoteDesc" : "the north arrowslit and staircase up the north end of the northeast tower."
+        }
+      },
+      "id" : "6,2,4",
+      "position" : {
+        "x" : 6,
+        "y" : 2,
+        "z" : 4
+      },
+      "remoteDesc" : "the west arrowslit and staircase up the west end of the northeast tower."
+    },
+    "6,3,2" : {
+      "desc" : "",
+      "exits" : {
+        "s" : {
+          "id" : "6,4,2",
+          "remoteDesc" : "the east rear hallway."
+        },
+        "w" : {
+          "id" : "5,3,2",
+          "remoteDesc" : "the west center of the rear hallway."
+        }
+      },
+      "id" : "6,3,2",
+      "position" : {
+        "x" : 6,
+        "y" : 3,
+        "z" : 2
+      },
+      "remoteDesc" : "the northeast section of the rear hallway."
+    },
+    "6,4,2" : {
+      "desc" : "",
+      "exits" : {
+        "n" : {
+          "id" : "6,3,2",
+          "remoteDesc" : "the northeast section of the rear hallway."
+        },
+        "s" : {
+          "id" : "6,5,2",
+          "remoteDesc" : "the top of the staircase."
+        }
+      },
+      "id" : "6,4,2",
+      "position" : {
+        "x" : 6,
+        "y" : 4,
+        "z" : 2
+      },
+      "remoteDesc" : "the east rear hallway."
+    },
+    "6,5,2" : {
+      "desc" : "",
+      "exits" : {
+        "e" : {
+          "id" : "7,5,2",
+          "remoteDesc" : "7,5,2."
+        },
+        "n" : {
+          "id" : "6,4,2",
+          "remoteDesc" : "the east rear hallway."
+        },
+        "w" : {
+          "id" : "5,5,2",
+          "remoteDesc" : "the top of the staircase."
+        }
+      },
+      "id" : "6,5,2",
+      "position" : {
+        "x" : 6,
+        "y" : 5,
+        "z" : 2
+      },
+      "remoteDesc" : "6,5,2."
+    },
+    "6,6,1" : {
+      "desc" : "You are on the northeast staircase.",
+      "exits" : {
+        "nw" : {
+          "id" : "5,5,2",
+          "remoteDesc" : "the top of the staircase."
+        },
+        "sw" : {
+          "id" : "5,7,0",
+          "remoteDesc" : "the castle's main hall."
+        }
+      },
+      "id" : "6,6,1",
+      "position" : {
+        "x" : 6,
+        "y" : 6,
+        "z" : 1
+      },
+      "remoteDesc" : "the northeast staircase."
+    },
+    "6,7,0" : {
+      "desc" : "",
+      "exits" : {
+        "se" : {
+          "id" : "7,8,1",
+          "remoteDesc" : "the center of the southeast tower."
+        },
+        "w" : {
+          "id" : "5,7,0",
+          "remoteDesc" : "the castle's main hall."
+        }
+      },
+      "id" : "6,7,0",
+      "position" : {
+        "x" : 6,
+        "y" : 7,
+        "z" : 0
+      },
+      "remoteDesc" : "the entrance to the southeast tower."
+    },
+    "6,8,2" : {
+      "desc" : "You are at the top of the southeast tower, looking at the west battlement.",
+      "exits" : {
+        "ne" : {
+          "id" : "7,7,2",
+          "remoteDesc" : "the north battlement of the southeast tower."
+        },
+        "se" : {
+          "id" : "7,9,2",
+          "remoteDesc" : "the south battlement of the southeast tower."
+        }
+      },
+      "id" : "6,8,2",
+      "position" : {
+        "x" : 6,
+        "y" : 8,
+        "z" : 2
+      },
+      "remoteDesc" : "the west battlement of the southeast tower."
+    },
+    "6,9,0" : {
+      "desc" : "You are in the east guard station",
+      "exits" : {
+        "w" : {
+          "id" : "5,9,0",
+          "remoteDesc" : "the portcullis landing area."
+        }
+      },
+      "id" : "6,9,0",
+      "position" : {
+        "x" : 6,
+        "y" : 9,
+        "z" : 0
+      },
+      "remoteDesc" : "the east guard station."
+    },
+    "7,1,3" : {
+      "desc" : "",
+      "exits" : {
+        "se" : {
+          "id" : "8,2,2",
+          "remoteDesc" : "the east arrowslit and staircase up the east end of the northeast tower."
+        },
+        "sw" : {
+          "id" : "6,2,4",
+          "remoteDesc" : "the west arrowslit and staircase up the west end of the northeast tower."
+        }
+      },
+      "id" : "7,1,3",
+      "position" : {
+        "x" : 7,
+        "y" : 1,
+        "z" : 3
+      },
+      "remoteDesc" : "the north arrowslit and staircase up the north end of the northeast tower."
+    },
+    "7,2,4" : {
+      "desc" : "",
+      "exits" : {
+        "w" : {
+          "id" : "6,2,4",
+          "remoteDesc" : "the west arrowslit and staircase up the west end of the northeast tower."
+        }
+      },
+      "id" : "7,2,4",
+      "position" : {
+        "x" : 7,
+        "y" : 2,
+        "z" : 4
+      },
+      "remoteDesc" : "the pinnacle of the northeast tower."
+    },
+    "7,3,2" : {
+      "desc" : "",
+      "exits" : {
+        "ne" : {
+          "id" : "8,2,2",
+          "remoteDesc" : "the east arrowslit and staircase up the east end of the northeast tower."
+        },
+        "s" : {
+          "id" : "7,4,2",
+          "remoteDesc" : "7,4,2."
+        }
+      },
+      "id" : "7,3,2",
+      "position" : {
+        "x" : 7,
+        "y" : 3,
+        "z" : 2
+      },
+      "remoteDesc" : "the entrance to the northeast tower."
+    },
+    "7,4,2" : {
+      "desc" : "",
+      "exits" : {
+        "n" : {
+          "id" : "7,3,2",
+          "remoteDesc" : "the entrance to the northeast tower."
+        },
+        "s" : {
+          "id" : "7,5,2",
+          "remoteDesc" : "7,5,2."
+        }
+      },
+      "id" : "7,4,2",
+      "position" : {
+        "x" : 7,
+        "y" : 4,
+        "z" : 2
+      },
+      "remoteDesc" : "7,4,2."
+    },
+    "7,5,2" : {
+      "desc" : "",
+      "exits" : {
+        "e" : {
+          "id" : "8,5,2",
+          "remoteDesc" : "8,5,2."
+        },
+        "n" : {
+          "id" : "7,4,2",
+          "remoteDesc" : "7,4,2."
+        },
+        "s" : {
+          "id" : "7,6,2",
+          "remoteDesc" : "7,6,2"
+        },
+        "w" : {
+          "id" : "6,5,2",
+          "remoteDesc" : "the top of the staircase."
+        }
+      },
+      "id" : "7,5,2",
+      "position" : {
+        "x" : 7,
+        "y" : 5,
+        "z" : 2
+      },
+      "remoteDesc" : "7,5,2."
+    },
+    "7,6,2" : {
+      "desc" : "",
+      "exits" : {
+        "n" : {
+          "id" : "7,5,2",
+          "remoteDesc" : "7,5,2."
+        }
+      },
+      "id" : "7,6,2",
+      "position" : {
+        "x" : 7,
+        "y" : 6,
+        "z" : 2
+      },
+      "remoteDesc" : "7,6,2"
+    },
+    "7,7,2" : {
+      "desc" : "You are at the top of the southeast tower, looking at the north battlement.",
+      "exits" : {
+        "se" : {
+          "id" : "8,8,2",
+          "remoteDesc" : "the east battlement of the southeast tower."
+        },
+        "sw" : {
+          "id" : "6,8,2",
+          "remoteDesc" : "the west battlement of the southeast tower."
+        }
+      },
+      "id" : "7,7,2",
+      "position" : {
+        "x" : 7,
+        "y" : 7,
+        "z" : 2
+      },
+      "remoteDesc" : "the north battlement of the southeast tower."
+    },
+    "7,8,1" : {
+      "desc" : "",
+      "exits" : {
+        "nw" : {
+          "id" : "6,7,0",
+          "remoteDesc" : "the entrance to the southeast tower."
+        },
+        "s" : {
+          "id" : "7,9,2",
+          "remoteDesc" : "the south battlement of the southeast tower."
+        }
+      },
+      "id" : "7,8,1",
+      "position" : {
+        "x" : 7,
+        "y" : 8,
+        "z" : 1
+      },
+      "remoteDesc" : "the center of the southeast tower."
+    },
+    "7,9,2" : {
+      "desc" : "You are at the top of the southeast tower, looking at the south battlement.",
+      "exits" : {
+        "n" : {
+          "id" : "7,8,1",
+          "remoteDesc" : "the center of the southeast tower."
+        },
+        "ne" : {
+          "id" : "8,8,2",
+          "remoteDesc" : "the east battlement of the southeast tower."
+        },
+        "nw" : {
+          "id" : "6,8,2",
+          "remoteDesc" : "the west battlement of the southeast tower."
+        }
+      },
+      "id" : "7,9,2",
+      "position" : {
+        "x" : 7,
+        "y" : 9,
+        "z" : 2
+      },
+      "remoteDesc" : "the south battlement of the southeast tower."
+    },
+    "8,2,2" : {
+      "desc" : "",
+      "exits" : {
+        "nw" : {
+          "id" : "7,1,3",
+          "remoteDesc" : "the north arrowslit and staircase up the north end of the northeast tower."
+        },
+        "sw" : {
+          "id" : "7,3,2",
+          "remoteDesc" : "the entrance to the northeast tower."
+        }
+      },
+      "id" : "8,2,2",
+      "position" : {
+        "x" : 8,
+        "y" : 2,
+        "z" : 2
+      },
+      "remoteDesc" : "the east arrowslit and staircase up the east end of the northeast tower."
+    },
+    "8,5,2" : {
+      "desc" : "You are at 8,5,2.",
+      "exits" : {
+        "e" : {
+          "id" : "9,5,2",
+          "remoteDesc" : "the entrance to the east tower."
+        },
+        "w" : {
+          "id" : "7,5,2",
+          "remoteDesc" : "7,5,2."
+        }
+      },
+      "id" : "8,5,2",
+      "position" : {
+        "x" : 8,
+        "y" : 5,
+        "z" : 2
+      },
+      "remoteDesc" : "8,5,2."
+    },
+    "8,8,2" : {
+      "desc" : "You are at the top of the southeast tower, looking at the east battlement.",
+      "exits" : {
+        "nw" : {
+          "id" : "7,7,2",
+          "remoteDesc" : "the north battlement of the southeast tower."
+        },
+        "sw" : {
+          "id" : "7,9,2",
+          "remoteDesc" : "the south battlement of the southeast tower."
+        }
+      },
+      "id" : "8,8,2",
+      "position" : {
+        "x" : 8,
+        "y" : 8,
+        "z" : 2
+      },
+      "remoteDesc" : "the east battlement of the southeast tower."
+    },
+    "9,4,3" : {
+      "desc" : "",
+      "exits" : {
+        "s" : {
+          "id" : "9,5,2",
+          "remoteDesc" : "the entrance to the east tower."
+        },
+        "se" : {
+          "id" : "10,5,4",
+          "remoteDesc" : "the east end of the west tower."
+        }
+      },
+      "id" : "9,4,3",
+      "position" : {
+        "x" : 9,
+        "y" : 4,
+        "z" : 3
+      },
+      "remoteDesc" : "the north end of the east tower."
+    },
+    "9,5,2" : {
+      "desc" : "You are at the entrance to the east tower",
+      "exits" : {
+        "n" : {
+          "id" : "9,4,3",
+          "remoteDesc" : "the north end of the east tower."
+        },
+        "s" : {
+          "id" : "9,6,3",
+          "remoteDesc" : "the south end of the west tower."
+        },
+        "w" : {
+          "id" : "8,5,2",
+          "remoteDesc" : "8,5,2."
+        }
+      },
+      "id" : "9,5,2",
+      "position" : {
+        "x" : 9,
+        "y" : 5,
+        "z" : 2
+      },
+      "remoteDesc" : "the entrance to the east tower."
+    },
+    "9,6,3" : {
+      "desc" : "",
+      "exits" : {
+        "n" : {
+          "id" : "9,5,2",
+          "remoteDesc" : "the entrance to the east tower."
+        },
+        "ne" : {
+          "id" : "10,5,4",
+          "remoteDesc" : "the east end of the west tower."
+        }
+      },
+      "id" : "9,6,3",
+      "position" : {
+        "x" : 9,
+        "y" : 6,
+        "z" : 3
+      },
+      "remoteDesc" : "the south end of the west tower."
+    }
+  },
+  "saves" : {
+    "id" : 0
+  }
+}

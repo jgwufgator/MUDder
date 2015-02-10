@@ -1,0 +1,3 @@
+function visitor(rooms, startingRoom) {
+
+}

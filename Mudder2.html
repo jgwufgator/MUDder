@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="content/site.css" />
+<link rel="stylesheet" type="text/css" href="content/site2.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.1.2/firebase.js"></script>
+<!--//<script type="text/javascript" src="story/rooms.js"></script>-->
+<script type="text/javascript" src="scripts/parser.js"></script>
+<script type="text/javascript" src="scripts/GameHandler.js"></script>
+<script type="text/javascript" src="scripts/parser.js"></script>
+<script type="text/javascript" src="scripts/RenderEngine.js"></script>
+<script type="text/javascript" src="scripts/RoomCompiler.js"></script>
+<script type="text/javascript" src="scripts/MovementHandler.js"></script>
+<script type="text/javascript" src="scripts/jcanvas.js"></script>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row game-area">
+		    <div class="comms-area">
+		        <div class="col-md-8" style="height: 100%;">
+		            <div id="game-msgs-div" class="game-messages js-story"></div>
+		        </div>
+		        <div class="col-md-4" style="height: 100%;">
+		            <div id="comm-msgs-div" class="comm-messages"></div>
+		        </div>
+		        <div class="col-md-12" style="margin-top: 10px;">
+		            <input id="cmd-input" type="text" placeholder="Enter command" class="form-control js-command-form" />
+		        </div>
+		    </div>
+		</div>
+	</div>
+</body>
+<div class="js-output">
+<canvas id="mapCanvas0" height="600" width="440" class="map-canvas base-level"></canvas>
+<canvas id="mapCanvas1" height="600" width="440" class="map-canvas level0"></canvas>
+<canvas id="mapCanvas1Fog" height="600" width="440" class="map-canvas level0Shadow shadowLayer"></canvas>
+<canvas id="mapCanvas2" height="600" width="440" class="map-canvas level1"></canvas>
+<canvas id="mapCanvas2Fog" height="600" width="440" class="map-canvas level1Shadow shadowLayer"></canvas>
+<canvas id="mapCanvas3" height="600" width="440" class="map-canvas level2"></canvas>
+<canvas id="mapCanvas3Fog" height="600" width="440" class="map-canvas level2Shadow shadowLayer"></canvas>
+<canvas id="mapCanvas3" height="600" width="440" class="map-canvas level3"></canvas>
+<canvas id="mapCanvas4Fog" height="600" width="440" class="map-canvas level3Shadow shadowLayer"></canvas>
+<canvas id="mapCanvas4" height="600" width="440" class="map-canvas level4"></canvas>
+<canvas id="mapCanvas5Fog" height="600" width="440" class="map-canvas level4Shadow shadowLayer"></canvas>
+</div>
+<img id="greengrass" src="images/bg-sm.png" style="visibility: hidden" />
+</body>
+</html>
+
+
+<script>
+	var firebaseUrl = 'https://torid-torch-7401.firebaseio.com/rooms/';
+
+	var position = { x: 6, y: 14, z: 0};
+	//var position = { x: 6, y: 5, z: 2};
+	var movementHandler = new MovementHandler();
+	//var roomCompiler = new RoomCompiler(story.rooms, movementHandler);
+	//roomCompiler.init();
+	var parser = new Parser( { tokenizer: ' ' } );
+	var renderEngine = new RenderEngine($('.js-output'), $('mapCanvas'));
+	renderEngine.init();
+	var gameHandler = new GameHandler($('.js-command-form'), { firebaseUrl: firebaseUrl, parser: parser, position: position, renderEngine: renderEngine, movementHandler: movementHandler });
+	gameHandler.start();
+</script>
