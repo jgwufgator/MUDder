@@ -4,9 +4,9 @@
 
 }
 .js-command-form {
-	width: 95%;
+	/*width: 95%;
 	bottom: 5px;
-	position: absolute;
+	position: absolute;*/
 }
 .js-command-input {
 	width:100%;	
@@ -29,8 +29,8 @@ p {
 
 .map-canvas {
     position: fixed;
-    top: 1em;
-    right: 1em;
+    top: 0px;
+    right: 0px;
 }
 
 .base-level{

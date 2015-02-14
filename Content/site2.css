@@ -2,9 +2,7 @@ html {
     height: 100%;
 }
 
-body {
-    padding-top: 70px;
-    padding-bottom: 15px;
+body {    
     height: 100%;
 }
 
@@ -45,7 +43,7 @@ textarea {
 
 /* Bootstrap adjustments*/
 .container-fluid {
-    height: 95%;
+    height: 100%;
 }
 
 p {
