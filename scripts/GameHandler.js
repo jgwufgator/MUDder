@@ -127,6 +127,8 @@ function GameHandler($inElt, options) {
                     var room = snap.val();
                     self.options.renderEngine.render(room, room, true);
                     self.renderCurrentRoom(gameState.currentRoom);
+                    if(gameState.currentRoom === k)
+                        self.currentPosition = room;
                 });
             });            
         });
