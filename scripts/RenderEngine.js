@@ -114,63 +114,23 @@ function RenderEngine($outputDiv, $canvasElt) {
 	};
 	
 	this.renderRoomOnCanvas = function(room, previousRoom){
-		var scaleFactor = self.scaleFactor;
-		if(room) {
-			$('.map-canvas.level'+ room.position.z).drawRect({
-				fillStyle: '#33CC33',
-				x: self.margin + room.position.x * 2 * self.scaleFactor,
-				y: self.margin + room.position.y * 2 * self.scaleFactor,
-				width: self.scaleFactor,
-				height: self.scaleFactor,
-				fromCenter: false
-			});
-			$('.map-canvas.level'+ room.position.z + 'Shadow').clearCanvas({			
-				x: room.position.x * 2 * self.scaleFactor,
-				y: room.position.y * 2 * self.scaleFactor,
-				width: self.scaleFactor * 3,
-				height: self.scaleFactor * 3,
-				fromCenter: false
-			});
-			self.showFloorCanvas(room.position.z);
+		var scaleFactor = self.scaleFactor;		
 
-			var sqrtOfTwo = Math.sqrt(2);
-
-			$.each(room.exits, function(key, value){
-					switch(key){
-						case 'n':
-							self.drawVector(room.position.x * 2 * scaleFactor + 0.5 * scaleFactor, room.position.y * 2 * scaleFactor, room.position.z, 0, scaleFactor);
-							break;
-						case 's':
-							self.drawVector(room.position.x * 2 * scaleFactor + 0.5 * scaleFactor, room.position.y * 2 * scaleFactor + scaleFactor, room.position.z, 180, scaleFactor);
-							break;
-						case 'nw':
-						case 'wn':
-							self.drawVector(room.position.x * 2 * scaleFactor, room.position.y * 2 * scaleFactor, room.position.z, -45, scaleFactor * sqrtOfTwo);
-							break;
-						case 'ne':
-						case 'en':
-							self.drawVector(room.position.x * 2 * scaleFactor + scaleFactor, room.position.y * 2 * scaleFactor, room.position.z, 45, scaleFactor * sqrtOfTwo);
-							break;
-						case 'e':
-							self.drawVector(room.position.x * 2 * scaleFactor + scaleFactor, room.position.y * 2 * scaleFactor + 0.5 * scaleFactor, room.position.z, 90, scaleFactor);
-							break;
-						case 'w':
-							self.drawVector(room.position.x * 2 * scaleFactor, room.position.y * 2 * scaleFactor + 0.5 * scaleFactor, room.position.z, -90, scaleFactor);
-							break;
-						case 'sw':
-						case 'ws':
-							self.drawVector(room.position.x * 2 * scaleFactor, room.position.y * 2 * scaleFactor + scaleFactor, room.position.z, -135, scaleFactor * sqrtOfTwo);
-							break;
-						case 'se':
-						case 'es':
-							self.drawVector(room.position.x * 2 * scaleFactor + scaleFactor, room.position.y * 2 * scaleFactor + scaleFactor, room.position.z, 135, scaleFactor * sqrtOfTwo);
-							break;
-						default:
-							break;
-					}
-				} 
-			);
-		}
+		$('.map-canvas.level'+ room.position.z).drawRect({
+			fillStyle: '#33CC33',
+			x: self.margin + room.position.x * 2 * self.scaleFactor,
+			y: self.margin + room.position.y * 2 * self.scaleFactor,
+			width: self.scaleFactor,
+			height: self.scaleFactor,
+			fromCenter: false
+		});
+		$('.map-canvas.level'+ room.position.z + 'Shadow').clearCanvas({			
+			x: room.position.x * 2 * self.scaleFactor,
+			y: room.position.y * 2 * self.scaleFactor,
+			width: self.scaleFactor * 3,
+			height: self.scaleFactor * 3,
+			fromCenter: false
+		});
 		if(previousRoom /*&& (room.position.z === previousRoom.position.z)*/)
 			$('.map-canvas.level'+ previousRoom.position.z).drawRect({
 				fillStyle: '#0066ff',
@@ -190,6 +150,44 @@ function RenderEngine($outputDiv, $canvasElt) {
 		// 	width: scaleFactor, height: scaleFactor
 		// });
 
-		
+		self.showFloorCanvas(room.position.z);
+
+		var sqrtOfTwo = Math.sqrt(2);
+
+		$.each(room.exits, function(key, value){
+				switch(key){
+					case 'n':
+						self.drawVector(room.position.x * 2 * scaleFactor + 0.5 * scaleFactor, room.position.y * 2 * scaleFactor, room.position.z, 0, scaleFactor);
+						break;
+					case 's':
+						self.drawVector(room.position.x * 2 * scaleFactor + 0.5 * scaleFactor, room.position.y * 2 * scaleFactor + scaleFactor, room.position.z, 180, scaleFactor);
+						break;
+					case 'nw':
+					case 'wn':
+						self.drawVector(room.position.x * 2 * scaleFactor, room.position.y * 2 * scaleFactor, room.position.z, -45, scaleFactor * sqrtOfTwo);
+						break;
+					case 'ne':
+					case 'en':
+						self.drawVector(room.position.x * 2 * scaleFactor + scaleFactor, room.position.y * 2 * scaleFactor, room.position.z, 45, scaleFactor * sqrtOfTwo);
+						break;
+					case 'e':
+						self.drawVector(room.position.x * 2 * scaleFactor + scaleFactor, room.position.y * 2 * scaleFactor + 0.5 * scaleFactor, room.position.z, 90, scaleFactor);
+						break;
+					case 'w':
+						self.drawVector(room.position.x * 2 * scaleFactor, room.position.y * 2 * scaleFactor + 0.5 * scaleFactor, room.position.z, -90, scaleFactor);
+						break;
+					case 'sw':
+					case 'ws':
+						self.drawVector(room.position.x * 2 * scaleFactor, room.position.y * 2 * scaleFactor + scaleFactor, room.position.z, -135, scaleFactor * sqrtOfTwo);
+						break;
+					case 'se':
+					case 'es':
+						self.drawVector(room.position.x * 2 * scaleFactor + scaleFactor, room.position.y * 2 * scaleFactor + scaleFactor, room.position.z, 135, scaleFactor * sqrtOfTwo);
+						break;
+					default:
+						break;
+				}
+			} 
+		);
 	};	
 }
