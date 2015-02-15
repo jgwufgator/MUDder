@@ -8,6 +8,7 @@ function authenticationHandler($inElt, options) {
 		self.$elt.on('click', '.js-register-button', self.registerUser);
 		self.$elt.on('click', '.js-login-button', self.loginUser);
 		self.$elt.on('click', '.js-forgotpassword-button', self.forgotPassword);
+		self.$elt.on('click', '.js-resetpassword-button', self.resetPassword);
 	}
 
 	this.registerUser = function() {
@@ -55,10 +56,12 @@ function authenticationHandler($inElt, options) {
 		var authData = ref.getAuth();
 		if (authData) {
 		  console.log("Authenticated user with uid:", authData.uid);
+		  return authData;
 		}
 		else {
 			window.location = window.location.href.replace('mudder2.html', 'login.html');
 		}
+		return null;
 	}
 
 	this.logout = function() {
@@ -82,6 +85,31 @@ function authenticationHandler($inElt, options) {
 		    }
 		  } else {
 		    self.displaySuccess("Password reset email sent successfully!");
+		    //self.$elt.find('#my-tab-content a[href="#profile"]').tab('show');
+		  }
+		});
+	}
+
+	this.resetPassword = function() {		
+		var ref = new Firebase(self.fbUrl);
+		ref.changePassword({
+		  email: self.$elt.find('.js-reset-email').val(),
+		  oldPassword: self.$elt.find('.js-reset-oldpassword').val(),
+		  newPassword: self.$elt.find('.js-reset-newpassword').val(),
+		}, function(error) {
+		  if (error) {
+		    switch (error.code) {
+		      case "INVALID_PASSWORD":
+		        self.displayFailure("The specified user account password is incorrect.");
+		        break;
+		      case "INVALID_USER":
+		        self.displayFailure("The specified user account does not exist.");
+		        break;
+		      default:
+		        self.displayFailure("Error changing password:", error);
+		    }
+		  } else {
+		    self.displaySuccess("User password changed successfully!");
 		  }
 		});
 	}

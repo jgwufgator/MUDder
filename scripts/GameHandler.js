@@ -39,7 +39,12 @@ function GameHandler($inElt, options) {
             case 'LOGOUT':
                 self.logout();
                 break;
-
+            case 'SAVE':
+                self.saveGame();
+                break;
+            case 'LOAD':
+                self.loadGame();
+                break;
             default:
                 alert('don\'t know what ' + input.action + ' is.  Target is ' + input.target);
         }
@@ -62,7 +67,7 @@ function GameHandler($inElt, options) {
             self.roomFireBase = new Firebase(roomUrl);
             self.roomFireBase.once('value', function(snap) {
                 self.currentPosition = snap.val();
-                self.playerData.roomsVisited.push(self.currentPosition.position);
+                self.playerData.roomsVisited[self.currentPosition.id] = true;
                 self.options.renderEngine.render(self.currentPosition, self.firstMove ? null : previousRoom);                
                 self.previousRoom = previousRoom;
                 self.occupantsFireBase = new Firebase(roomUrl + '/players');
@@ -97,4 +102,43 @@ function GameHandler($inElt, options) {
     this.logout = function() {
         self.options.authenticationHandler.logout();
     };
+
+    this.saveGame = function() {
+        var fb = new Firebase(self.options.firebaseUrl + '/users/' + self.options.authData.uid);        
+        var gameState =
+        {
+            roomsVisited: self.playerData.roomsVisited,
+            currentRoom: self.currentPosition.id
+        };
+        fb.set(gameState);    
+    }
+
+    this.loadGame = function() {
+        self.options.renderEngine.renderString('LOADING...');
+        var fb = new Firebase(self.options.firebaseUrl + '/users/' + self.options.authData.uid);
+        fb.once('value', function(dataSnapshot) {
+            var gameState = dataSnapshot.val();
+            self.options.renderEngine.resetMap();
+
+             $.each(gameState.roomsVisited, function(k, v) {
+                var roomUrl = self.options.firebaseUrl + 'rooms/' + k;
+                var fb = new Firebase(roomUrl);
+                fb.once('value', function(snap) {
+                    var room = snap.val();
+                    self.options.renderEngine.render(room, room, true);
+                    self.renderCurrentRoom(gameState.currentRoom);
+                });
+            });            
+        });
+    }
+
+    this.renderCurrentRoom = function(currentRoom) {
+        var roomUrl = self.options.firebaseUrl + 'rooms/' + currentRoom;
+        var fb = new Firebase(roomUrl);
+        fb.once('value', function(snap) {
+            var room = snap.val();
+            self.options.renderEngine.render(room, null);
+            self.options.renderEngine.renderString('Load complete');
+        });
+    }
 }

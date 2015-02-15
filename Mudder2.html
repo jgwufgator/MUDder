@@ -62,7 +62,7 @@
 
 	var handler = new authenticationHandler($('.js-account'), { fbUrl: firebaseUrl });
 	handler.init();
-	handler.getAuth();	
+	var authData = handler.getAuth();	
 	
 	var mudderResizeHandler = function(e){
 		$('.map-canvas').height($('.map-canvas').closest('.map-container').height());
@@ -87,6 +87,15 @@
 	var parser = new Parser( { tokenizer: ' ' } );
 	var renderEngine = new RenderEngine($('.js-output'), $('mapCanvas'));
 	renderEngine.init();
-	var gameHandler = new GameHandler($('.js-command-form'), { firebaseUrl: firebaseUrl, parser: parser, position: position, renderEngine: renderEngine, movementHandler: movementHandler, authenticationHandler: handler });
+	var gameHandler = new GameHandler($('.js-command-form'),
+		{
+			firebaseUrl: firebaseUrl,
+			parser: parser,
+			position: position,
+			renderEngine: renderEngine,
+			movementHandler: movementHandler,
+			authenticationHandler: handler,
+			authData: authData
+	});
 	gameHandler.start();
 </script>

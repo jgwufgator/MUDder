@@ -7,6 +7,11 @@ function RenderEngine($outputDiv, $canvasElt) {
 	this.margin = 16;
 
 	this.init = function(){
+		self.resetMap();
+	};
+
+	this.resetMap = function() {
+		$('.map-canvas').clearCanvas();
 		$('.shadowLayer').drawRect({
 			fillStyle: '#000000',
 			fromCenter: false,
@@ -15,6 +20,13 @@ function RenderEngine($outputDiv, $canvasElt) {
 			width: 440,
 			height: 600
 		});
+	};
+
+	this.renderLoadedMap = function(gameState) {
+
+	};
+
+	this.clearCanvases = function() {
 	};
 
 	// this.pattern = $('#mapCanvas0').createPattern({
@@ -33,22 +45,28 @@ function RenderEngine($outputDiv, $canvasElt) {
 				height: 600});
 	};*/
 
-	this.render = function(room, previousRoom) {
-		var desc = (room.desc.length === 0) ? 'You are in the ' + room.remoteDesc + '.' : room.desc;
-		self.$outputDiv.append('<p class="js-room-description">' + desc + '</p>');
-		self.renderExits(room);
-		self.renderRoomOnCanvas(room, previousRoom);
-
+	this.scrollToBottom = function() {
 		self.$outputDiv.scrollTop(self.$outputDiv[0].scrollHeight);		
+	};
+
+	this.render = function(room, previousRoom, fromLoad) {
+		if(!fromLoad) {
+			var desc = (room.desc.length === 0) ? 'You are in the ' + room.remoteDesc + '.' : room.desc;
+			self.$outputDiv.append('<p class="js-room-description">' + desc + '</p>');
+			self.renderExits(room);
+			self.scrollToBottom();
+		}		
+		self.renderRoomOnCanvas(room, previousRoom);		
 	};
 
 	this.renderString = function(s) {
 		self.$outputDiv.append('<p class="js-refusal">' + s+ '</p>');
+		self.scrollToBottom();
 	};
 
 	this.renderRefusal = function() {
 		self.$outputDiv.append('<p class="js-refusal">You can\'t go that way.</p>');
-		self.$outputDiv.scrollTop(self.$outputDiv[0].scrollHeight);
+		self.scrollToBottom();
 	};
 
 	this.renderExits = function(room) {
@@ -90,6 +108,10 @@ function RenderEngine($outputDiv, $canvasElt) {
 				l1: length
 			});
 		};
+
+	this.renderPlayers = function(players) {
+
+	};
 	
 	this.renderRoomOnCanvas = function(room, previousRoom){
 		var scaleFactor = self.scaleFactor;		
