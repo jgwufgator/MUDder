@@ -4,11 +4,14 @@ function GameHandler($inElt, options) {
     this.options = options;
     this.$commandInput = $inElt.find('.js-command-input');
     this.playerData = { roomsVisited: [] };
+    this.roomFireBase = null;
+    this.occupantsFireBase = null;
 
     this.start = function () {
         //self.options.renderEngine.drawBackground(self.options.renderEngine.pattern);
+        self.firstMove = true;
         self.$elt.on('keypress', '.js-command-input', self.handleCommandInput);
-        self.move(null, true);         
+        self.move(null, true);        
     };
 
     this.handleCommandInput = function(e) {
@@ -42,25 +45,48 @@ function GameHandler($inElt, options) {
         self.options.renderEngine.renderString(self.currentPosition.id);
     };
 
-    this.move = function(moveDirection, first){
+    this.move = function(moveDirection){
         var movementPossible = false;
-        if(!first)            
+        if(!self.firstMove)            
             movementPossible = self.currentPosition.exits.hasOwnProperty(moveDirection.toLowerCase());        
-        if(first || movementPossible)
+        if(self.firstMove || movementPossible)
         {
-            var previousRoom = first ? null : self.currentPosition;
-            var newPosition = first ? options.position.x + "," + options.position.y + "," + options.position.z : self.currentPosition.exits[moveDirection.toLowerCase()].id;            
-            var fb = new Firebase(self.options.firebaseUrl + newPosition);
-            fb.once('value', function(snap) {
+            self.removeFireBaseListeners();
+            var previousRoom = self.firstMove ? null : self.currentPosition;
+            var newPosition = self.firstMove ? options.position.x + "," + options.position.y + "," + options.position.z : self.currentPosition.exits[moveDirection.toLowerCase()].id;
+            var roomUrl = self.options.firebaseUrl + newPosition;
+            self.roomFireBase = new Firebase(roomUrl);
+            self.roomFireBase.once('value', function(snap) {
                 self.currentPosition = snap.val();
                 self.playerData.roomsVisited.push(self.currentPosition.position);
-                self.options.renderEngine.render(self.currentPosition, first ? null : previousRoom);
+                self.options.renderEngine.render(self.currentPosition, self.firstMove ? null : previousRoom);                
                 self.previousRoom = previousRoom;
+                self.occupantsFireBase = new Firebase(roomUrl + '/players');
+                self.occupantsFireBase.on('child_added', function(snapshot) {
+                    var newPlayer = snapshot.val();
+                    var playersEnteringRoomString = newPlayer + ' entered the room.';                    
+                    self.options.renderEngine.renderString(playersEnteringRoomString);
+                });
+                self.occupantsFireBase.on('child_removed', function(snapshot) {
+                    var leavingPlayer = snapshot.val();
+                    var playersLeavingRoomString = leavingPlayer + ' left the room.';                    
+                    self.options.renderEngine.renderString(playersLeavingRoomString);
+                });
             });
+            
+            self.firstMove = false;
         }
         else
         {
             self.options.renderEngine.renderRefusal();
         }        
+    };
+
+    this.removeFireBaseListeners = function(){
+        if(self.occupantsFireBase) {
+                self.occupantsFireBase.off('value');
+                self.occupantsFireBase.off('child_removed');
+                self.occupantsFireBase.off('child_changed');
+        }
     };
 }

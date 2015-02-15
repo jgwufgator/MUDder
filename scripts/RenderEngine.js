@@ -17,11 +17,11 @@ function RenderEngine($outputDiv, $canvasElt) {
 		});
 	};
 
-	this.pattern = $('#mapCanvas0').createPattern({
-		  source: $('#greengrass')[0],
-		  repeat: 'repeat',		  
-		  //load: self.drawBackground
-		});
+	// this.pattern = $('#mapCanvas0').createPattern({
+	// 	  source: $('#greengrass')[0],
+	// 	  repeat: 'repeat',		  
+	// 	  //load: self.drawBackground
+	// 	});
 
 	this.drawBackground = function(){};/*function(pattern){
 		$('#mapCanvas0').drawRect({
@@ -37,7 +37,9 @@ function RenderEngine($outputDiv, $canvasElt) {
 		var desc = (room.desc.length === 0) ? 'You are in the ' + room.remoteDesc + '.' : room.desc;
 		self.$outputDiv.append('<p class="js-room-description">' + desc + '</p>');
 		self.renderExits(room);
-		self.renderRoomOnCanvas(room, previousRoom);		
+		self.renderRoomOnCanvas(room, previousRoom);
+
+		self.$outputDiv.scrollTop(self.$outputDiv[0].scrollHeight);		
 	};
 
 	this.renderString = function(s) {
@@ -46,6 +48,7 @@ function RenderEngine($outputDiv, $canvasElt) {
 
 	this.renderRefusal = function() {
 		self.$outputDiv.append('<p class="js-refusal">You can\'t go that way.</p>');
+		self.$outputDiv.scrollTop(self.$outputDiv[0].scrollHeight);
 	};
 
 	this.renderExits = function(room) {
@@ -108,8 +111,7 @@ function RenderEngine($outputDiv, $canvasElt) {
 		});
 		if(previousRoom /*&& (room.position.z === previousRoom.position.z)*/)
 			$('.map-canvas.level'+ previousRoom.position.z).drawRect({
-				fillStyle: '#66ff',
-				//fillStyle: 'rgba(0, 102, 255, 0.5)',
+				fillStyle: '#0066ff',
 				x: self.margin + previousRoom.position.x * 2 * self.scaleFactor,
 				y: self.margin + previousRoom.position.y * 2 * self.scaleFactor,				
 				width: self.scaleFactor,

@@ -18,16 +18,16 @@
 
 <body>
 	<div class="container-fluid">
-		<div class="row game-area" style="background-color:blue">
-			<div style="height: 100%; background-color:green">
-				<div class="col-md-8" style="height: 100%; background-color: purple; padding: 1px;">
-					<div class="js-output" style="height: 95%; background-color: black;">						
+		<div class="row game-area" style="">
+			<div style="height: 100%; ">
+				<div class="col-md-8" style="height: 100%; padding: 1px;">
+					<div class="js-output" style="height: 95%;">						
 					</div>
-					<div class="js-command-form" style="height: 5%; background-color: orange;">
-						<input id="cmd-input" type="text" placeholder="Enter command" class="form-control js-command-form" />
+					<div class="js-command-form" style="height: 5%;">
+						<input id="cmd-input" type="text" placeholder="Enter command" class="form-control js-command-input" />
 					</div>
 				</div>
-				<div class="col-md-4" style="height: 100%; background-color: pink; padding: 1px;">
+				<div class="col-md-4 map-container" style="height: 100%; padding: 1px;">
 					<!-- <div style="height: 100%; background-color: aqua"> -->
 						<canvas id="mapCanvas0" height="600" width="440" class="map-canvas base-level"></canvas>
 						<canvas id="mapCanvas1" height="600" width="440" class="map-canvas level0"></canvas>
@@ -57,8 +57,20 @@
 
 
 <script>
+	var mudderResizeHandler = function(e){
+		$('.map-canvas').height($('.map-canvas').closest('.map-container').height());
+		$('.map-canvas').width($('.map-canvas').closest('.map-container').width());
+	};
+
+	$(window).resize(function() {
+  		mudderResizeHandler();
+	});
+
+	mudderResizeHandler();
+
 	var firebaseUrl = 'https://torid-torch-7401.firebaseio.com/rooms/';
 	var position = { x: 6, y: 14, z: 0};
+	
 	//var position = { x: 6, y: 5, z: 2};
 	var movementHandler = new MovementHandler();
 

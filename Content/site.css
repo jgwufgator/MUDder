@@ -7,9 +7,11 @@
 	/*width: 95%;
 	bottom: 5px;
 	position: absolute;*/
+	height:100%;
 }
 .js-command-input {
 	width:100%;	
+	height: 100%;
 }
 
 p {
@@ -81,4 +83,9 @@ p {
 .js-refusal{
 	color: #ff0000;
 
+}
+
+.js-output {
+	background-color: black;
+	overflow: auto;
 }
