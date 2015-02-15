@@ -36,6 +36,10 @@ function GameHandler($inElt, options) {
             case 'SC':
                 self.showCoordinates();
                 break;
+            case 'LOGOUT':
+                self.logout();
+                break;
+
             default:
                 alert('don\'t know what ' + input.action + ' is.  Target is ' + input.target);
         }
@@ -54,7 +58,7 @@ function GameHandler($inElt, options) {
             self.removeFireBaseListeners();
             var previousRoom = self.firstMove ? null : self.currentPosition;
             var newPosition = self.firstMove ? options.position.x + "," + options.position.y + "," + options.position.z : self.currentPosition.exits[moveDirection.toLowerCase()].id;
-            var roomUrl = self.options.firebaseUrl + newPosition;
+            var roomUrl = self.options.firebaseUrl + 'rooms/' + newPosition;
             self.roomFireBase = new Firebase(roomUrl);
             self.roomFireBase.once('value', function(snap) {
                 self.currentPosition = snap.val();
@@ -64,7 +68,7 @@ function GameHandler($inElt, options) {
                 self.occupantsFireBase = new Firebase(roomUrl + '/players');
                 self.occupantsFireBase.on('child_added', function(snapshot) {
                     var newPlayer = snapshot.val();
-                    var playersEnteringRoomString = newPlayer + ' entered the room.';                    
+                    var playersEnteringRoomString = newPlayer + ' is in the room.';                    
                     self.options.renderEngine.renderString(playersEnteringRoomString);
                 });
                 self.occupantsFireBase.on('child_removed', function(snapshot) {
@@ -88,5 +92,9 @@ function GameHandler($inElt, options) {
                 self.occupantsFireBase.off('child_removed');
                 self.occupantsFireBase.off('child_changed');
         }
+    };
+
+    this.logout = function() {
+        self.options.authenticationHandler.logout();
     };
 }

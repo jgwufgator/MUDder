@@ -14,6 +14,7 @@
 <script type="text/javascript" src="scripts/RoomCompiler.js"></script>
 <script type="text/javascript" src="scripts/MovementHandler.js"></script>
 <script type="text/javascript" src="scripts/jcanvas.js"></script>
+<script type="text/javascript" rel="text/javascript" src="scripts/login.js"></script>
 </head>
 
 <body>
@@ -57,6 +58,12 @@
 
 
 <script>
+	var firebaseUrl = 'https://torid-torch-7401.firebaseio.com/';
+
+	var handler = new authenticationHandler($('.js-account'), { fbUrl: firebaseUrl });
+	handler.init();
+	handler.getAuth();	
+	
 	var mudderResizeHandler = function(e){
 		$('.map-canvas').height($('.map-canvas').closest('.map-container').height());
 		$('.map-canvas').width($('.map-canvas').closest('.map-container').width());
@@ -68,7 +75,7 @@
 
 	mudderResizeHandler();
 
-	var firebaseUrl = 'https://torid-torch-7401.firebaseio.com/rooms/';
+
 	var position = { x: 6, y: 14, z: 0};
 	
 	//var position = { x: 6, y: 5, z: 2};
@@ -80,6 +87,6 @@
 	var parser = new Parser( { tokenizer: ' ' } );
 	var renderEngine = new RenderEngine($('.js-output'), $('mapCanvas'));
 	renderEngine.init();
-	var gameHandler = new GameHandler($('.js-command-form'), { firebaseUrl: firebaseUrl, parser: parser, position: position, renderEngine: renderEngine, movementHandler: movementHandler });
+	var gameHandler = new GameHandler($('.js-command-form'), { firebaseUrl: firebaseUrl, parser: parser, position: position, renderEngine: renderEngine, movementHandler: movementHandler, authenticationHandler: handler });
 	gameHandler.start();
 </script>
