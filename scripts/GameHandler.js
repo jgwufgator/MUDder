@@ -62,24 +62,33 @@ function GameHandler($inElt, options) {
         {
             self.removeFireBaseListeners();
             var previousRoom = self.firstMove ? null : self.currentPosition;
+            if(previousRoom){
+                var removePlayerFromRoomFB = new Firebase(self.options.firebaseUrl + 'rooms/' + previousRoom.id + '/players/' + self.options.authData.uid);
+                removePlayerFromRoomFB.remove();
+            }
             var newPosition = self.firstMove ? options.position.x + "," + options.position.y + "," + options.position.z : self.currentPosition.exits[moveDirection.toLowerCase()].id;
             var roomUrl = self.options.firebaseUrl + 'rooms/' + newPosition;
             self.roomFireBase = new Firebase(roomUrl);
             self.roomFireBase.once('value', function(snap) {
                 self.currentPosition = snap.val();
+                self.roomFireBase.child('players').child(self.options.authData.uid).set('true');
                 self.playerData.roomsVisited[self.currentPosition.id] = true;
                 self.options.renderEngine.render(self.currentPosition, self.firstMove ? null : previousRoom);                
                 self.previousRoom = previousRoom;
                 self.occupantsFireBase = new Firebase(roomUrl + '/players');
                 self.occupantsFireBase.on('child_added', function(snapshot) {
                     var newPlayer = snapshot.val();
-                    var playersEnteringRoomString = newPlayer + ' is in the room.';                    
-                    self.options.renderEngine.renderString(playersEnteringRoomString);
+                    if(newPlayer != self.options.authData.uid) {
+                        var playersEnteringRoomString = newPlayer + ' is in the room.';                    
+                        self.options.renderEngine.renderString(playersEnteringRoomString);
+                    }
                 });
                 self.occupantsFireBase.on('child_removed', function(snapshot) {
                     var leavingPlayer = snapshot.val();
-                    var playersLeavingRoomString = leavingPlayer + ' left the room.';                    
-                    self.options.renderEngine.renderString(playersLeavingRoomString);
+                    if(leavingPlayer != self.options.authData.uid) {
+                        var playersLeavingRoomString = leavingPlayer + ' left the room.';                    
+                        self.options.renderEngine.renderString(playersLeavingRoomString);
+                    }
                 });
             });
             
@@ -142,5 +151,10 @@ function GameHandler($inElt, options) {
             self.options.renderEngine.render(room, null);
             self.options.renderEngine.renderString('Load complete');
         });
+    }
+
+    this.refresh = function() {
+        var removePlayerFromRoomFB = new Firebase(self.options.firebaseUrl + 'rooms/' + previousRoom.id + '/players/' + self.options.authData.uid);
+        removePlayerFromRoomFB.remove();
     }
 }

@@ -98,4 +98,9 @@
 			authData: authData
 	});
 	gameHandler.start();
+
+	$(window).bind('beforeunload', function(e) {
+    if (1) {
+    	return 'If you leave, you will lose your progress... Are you sure?';
+	}});
 </script>

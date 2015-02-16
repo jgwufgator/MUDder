@@ -30,6 +30,15 @@ function authenticationHandler($inElt, options) {
 		    }
 		  } else {
 		    console.log("Successfully created user account with uid:", userData.uid);
+		    ref.authWithPassword({ 
+		    	email: self.$elt.find('.js-register-email').val(),
+		  		password: self.$elt.find('.js-register-password').val()
+			}, function(error, authData) {
+				ref.child('users').child(userData.uid).child('username').set(self.$elt.find('.js-register-username').val(), function(){
+					window.location = window.location.href.replace('login.html', 'mudder.html');
+				});
+
+			});		    
 		  }
 		});
 	}
@@ -46,7 +55,7 @@ function authenticationHandler($inElt, options) {
 		    self.displayFailure(error);
 		  } else {
 		    console.log("Authenticated successfully with payload:", authData);
-		    window.location = window.location.href.replace('login.html', 'mudder2.html');
+		    window.location = window.location.href.replace('login.html', 'mudder.html');
 		  }
 		});
 	}
@@ -59,7 +68,7 @@ function authenticationHandler($inElt, options) {
 		  return authData;
 		}
 		else {
-			window.location = window.location.href.replace('mudder2.html', 'login.html');
+			window.location = window.location.href.replace('mudder.html', 'login.html');
 		}
 		return null;
 	}
@@ -67,7 +76,7 @@ function authenticationHandler($inElt, options) {
 	this.logout = function() {
 		var ref = new Firebase(self.fbUrl);
 		var authData = ref.unauth();		
-		window.location = window.location.href.replace('mudder2.html', 'login.html');					
+		window.location = window.location.href.replace('mudder.html', 'login.html');					
 	}
 
 	this.forgotPassword = function() {
