@@ -9,7 +9,7 @@ function authenticationHandler($inElt, options) {
 		self.$elt.on('click', '.js-login-button', self.loginUser);
 		self.$elt.on('click', '.js-forgotpassword-button', self.forgotPassword);
 		self.$elt.on('click', '.js-resetpassword-button', self.resetPassword);
-	}
+	};
 
 	this.registerUser = function() {
 		var ref = new Firebase(self.fbUrl);
@@ -41,7 +41,7 @@ function authenticationHandler($inElt, options) {
 			});		    
 		  }
 		});
-	}
+	};
 
 	this.loginUser = function() {
 		var ref = new Firebase(self.fbUrl);
@@ -58,26 +58,29 @@ function authenticationHandler($inElt, options) {
 		    window.location = window.location.href.replace('login.html', 'mudder.html');
 		  }
 		});
-	}
+	};
 
 	this.getAuth = function() {
 		var ref = new Firebase(self.fbUrl);
 		var authData = ref.getAuth();
 		if (authData) {
 		  console.log("Authenticated user with uid:", authData.uid);
+		  ref.child('users').child(authData.uid).child('username').once('value', function(snap) {
+		  	authData.username = snap.val();		  	
+		  });
 		  return authData;
 		}
 		else {
 			window.location = window.location.href.replace('mudder.html', 'login.html');
 		}
 		return null;
-	}
+	};
 
 	this.logout = function() {
 		var ref = new Firebase(self.fbUrl);
 		var authData = ref.unauth();		
 		window.location = window.location.href.replace('mudder.html', 'login.html');					
-	}
+	};
 
 	this.forgotPassword = function() {
 		var ref = new Firebase(self.fbUrl);
@@ -97,7 +100,7 @@ function authenticationHandler($inElt, options) {
 		    //self.$elt.find('#my-tab-content a[href="#profile"]').tab('show');
 		  }
 		});
-	}
+	};
 
 	this.resetPassword = function() {		
 		var ref = new Firebase(self.fbUrl);
@@ -121,17 +124,17 @@ function authenticationHandler($inElt, options) {
 		    self.displaySuccess("User password changed successfully!");
 		  }
 		});
-	}
+	};
 
 	this.displayFailure = function(error) {
 		var $alertText = self.options.$alertElt.find('.js-error-text');
 		$alertText.html(error);
 		self.options.$alertElt.removeClass('hidden');
-	}
+	};
 
 	this.displaySuccess = function(msg) {
 		var $successText = self.options.$succesElt.find('.js-success-text');
 		$successText.html(msg);
 		self.options.$succesElt.removeClass('hidden');
-	}
+	};
 }

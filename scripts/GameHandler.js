@@ -3,7 +3,7 @@ function GameHandler($inElt, options) {
     this.$elt = $inElt;
     this.options = options;
     this.$commandInput = $inElt.find('.js-command-input');
-    this.playerData = { roomsVisited: [] };
+    this.playerData = { roomsVisited: [], questsSolved: [] };
     this.roomFireBase = null;
     this.occupantsFireBase = null;
 
@@ -45,17 +45,53 @@ function GameHandler($inElt, options) {
             case 'LOAD':
                 self.loadGame();
                 break;
+            case 'SAY':
+                self.say(input.target);
+                break;
+            case 'HINT':
+                self.say('hint');
+                break;            
+            case 'STATUS':
+                self.showStatus();                
+                break;
+            case 'HELP':
+                self.showHelp();
+                break;
             default:
                 alert('don\'t know what ' + input.action + ' is.  Target is ' + input.target);
         }
+    };
+
+    this.showHelp = function() {
+        self.options.renderString('Available commands are N, NE, NW, E, W, S, SE, SW, LOGOUT, SAVE, LOAD, SAY, HINT, STATUS, and HELP.');
+    };
+
+    this.showStatus = function (){
+        self.options.renderEngine.renderString('TODO : implement showStatus');
     };
 
     this.showCoordinates = function() {
         self.options.renderEngine.renderString(self.currentPosition.id);
     };
 
+    this.say = function(target) {        
+        if(self.inQuest) {
+            if(self.currentPosition.quest.answer.toLowerCase().search(target.toLowerCase()) >= 0 ) {
+                self.options.renderEngine.renderString('You have solved this quest!  Your reward is ' + self.currentPosition.quest.reward + '.');
+                self.inQuest = false;
+                self.playerData.questsSolved[self.currentPosition.id] = true;
+            }
+            else if(target.toLowerCase() == 'hint')
+                self.options.renderEngine.renderString('Your hint is: ' + self.currentPosition.quest.hint + '.');
+        }
+    };
+
     this.move = function(moveDirection){
         var movementPossible = false;
+        if(self.inQuest) {
+            self.options.renderEngine.renderRefusal('You may not leave the area until you solve the current room\'s quest!');
+            return;
+        }
         if(!self.firstMove)            
             movementPossible = self.currentPosition.exits.hasOwnProperty(moveDirection.toLowerCase());        
         if(self.firstMove || movementPossible)
@@ -71,15 +107,19 @@ function GameHandler($inElt, options) {
             self.roomFireBase = new Firebase(roomUrl);
             self.roomFireBase.once('value', function(snap) {
                 self.currentPosition = snap.val();
-                self.roomFireBase.child('players').child(self.options.authData.uid).set('true');
+                self.roomFireBase.child('players').child(self.options.authData.uid).set(authData.username);
                 self.playerData.roomsVisited[self.currentPosition.id] = true;
                 self.options.renderEngine.render(self.currentPosition, self.firstMove ? null : previousRoom);                
                 self.previousRoom = previousRoom;
                 self.occupantsFireBase = new Firebase(roomUrl + '/players');
+                if(self.currentPosition.quest) {
+                    self.inQuest = true;
+                    self.options.renderEngine.renderString('New quest:  ' + self.currentPosition.quest.riddle + '.  \'SAY\' the answer!');
+                }
                 self.occupantsFireBase.on('child_added', function(snapshot) {
-                    var newPlayer = snapshot.val();
-                    if(newPlayer != self.options.authData.uid) {
-                        var playersEnteringRoomString = newPlayer + ' is in the room.';                    
+                    var newPlayerId = snapshot.name();
+                    if(newPlayerId != self.options.authData.uid) {
+                        var playersEnteringRoomString = snapshot.val() + ' is in the room.';                    
                         self.options.renderEngine.renderString(playersEnteringRoomString);
                     }
                 });
@@ -90,8 +130,7 @@ function GameHandler($inElt, options) {
                         self.options.renderEngine.renderString(playersLeavingRoomString);
                     }
                 });
-            });
-            
+            });            
             self.firstMove = false;
         }
         else
@@ -117,10 +156,11 @@ function GameHandler($inElt, options) {
         var gameState =
         {
             roomsVisited: self.playerData.roomsVisited,
-            currentRoom: self.currentPosition.id
+            currentRoom: self.currentPosition.id,
+            questsSolved: self.playerData.questsSolved
         };
         fb.set(gameState);    
-    }
+    };
 
     this.loadGame = function() {
         self.options.renderEngine.renderString('LOADING...');
@@ -141,7 +181,7 @@ function GameHandler($inElt, options) {
                 });
             });            
         });
-    }
+    };
 
     this.renderCurrentRoom = function(currentRoom) {
         var roomUrl = self.options.firebaseUrl + 'rooms/' + currentRoom;
@@ -151,10 +191,10 @@ function GameHandler($inElt, options) {
             self.options.renderEngine.render(room, null);
             self.options.renderEngine.renderString('Load complete');
         });
-    }
+    };
 
     this.refresh = function() {
         var removePlayerFromRoomFB = new Firebase(self.options.firebaseUrl + 'rooms/' + previousRoom.id + '/players/' + self.options.authData.uid);
         removePlayerFromRoomFB.remove();
-    }
+    };
 }

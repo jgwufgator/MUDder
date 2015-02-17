@@ -52,20 +52,23 @@ function RenderEngine($outputDiv, $canvasElt) {
 	this.render = function(room, previousRoom, fromLoad) {
 		if(!fromLoad) {
 			var desc = (room.desc.length === 0) ? 'You are in the ' + room.remoteDesc + '.' : room.desc;
-			self.$outputDiv.append('<p class="js-room-description">' + desc + '</p>');
+			self.$outputDiv.append('<p class="js-room-description js-msg">' + desc + '</p>');
 			self.renderExits(room);
 			self.scrollToBottom();
+			if (self.$outputDiv.children().length > 500) {
+                    self.$outputDiv.find('.js-msg:lt(100)').remove();
+            }
 		}		
 		self.renderRoomOnCanvas(room, previousRoom);		
 	};
 
 	this.renderString = function(s) {
-		self.$outputDiv.append('<p class="js-refusal">' + s+ '</p>');
+		self.$outputDiv.append('<p class="js-refusal js-msg">' + s+ '</p>');
 		self.scrollToBottom();
 	};
 
 	this.renderRefusal = function() {
-		self.$outputDiv.append('<p class="js-refusal">You can\'t go that way.</p>');
+		self.$outputDiv.append('<p class="js-refusal js-msg">You can\'t go that way.</p>');
 		self.scrollToBottom();
 	};
 
@@ -74,7 +77,7 @@ function RenderEngine($outputDiv, $canvasElt) {
 		$.each(room.exits, function(key, value) {
 			exitString += '<p>' + key.toUpperCase() + ' - ' + value.remoteDesc + '</p>';
 		});		
-		self.$outputDiv.append('<div class="js-room-exits">' + exitString + '</div>');
+		self.$outputDiv.append('<div class="js-room-exits js-msg">' + exitString + '</div>');
 		self.$outputDiv.append('<br>');
 		console.log(exitString);
 	};
@@ -162,12 +165,10 @@ function RenderEngine($outputDiv, $canvasElt) {
 					case 's':
 						self.drawVector(room.position.x * 2 * scaleFactor + 0.5 * scaleFactor, room.position.y * 2 * scaleFactor + scaleFactor, room.position.z, 180, scaleFactor);
 						break;
-					case 'nw':
-					case 'wn':
+					case 'nw':					
 						self.drawVector(room.position.x * 2 * scaleFactor, room.position.y * 2 * scaleFactor, room.position.z, -45, scaleFactor * sqrtOfTwo);
 						break;
 					case 'ne':
-					case 'en':
 						self.drawVector(room.position.x * 2 * scaleFactor + scaleFactor, room.position.y * 2 * scaleFactor, room.position.z, 45, scaleFactor * sqrtOfTwo);
 						break;
 					case 'e':
@@ -177,11 +178,9 @@ function RenderEngine($outputDiv, $canvasElt) {
 						self.drawVector(room.position.x * 2 * scaleFactor, room.position.y * 2 * scaleFactor + 0.5 * scaleFactor, room.position.z, -90, scaleFactor);
 						break;
 					case 'sw':
-					case 'ws':
 						self.drawVector(room.position.x * 2 * scaleFactor, room.position.y * 2 * scaleFactor + scaleFactor, room.position.z, -135, scaleFactor * sqrtOfTwo);
 						break;
 					case 'se':
-					case 'es':
 						self.drawVector(room.position.x * 2 * scaleFactor + scaleFactor, room.position.y * 2 * scaleFactor + scaleFactor, room.position.z, 135, scaleFactor * sqrtOfTwo);
 						break;
 					default:
