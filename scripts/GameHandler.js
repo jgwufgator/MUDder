@@ -67,7 +67,7 @@ function GameHandler($inElt, options) {
     };
 
     this.showHelp = function() {
-        self.options.renderString('Available commands are N, NE, NW, E, W, S, SE, SW, LOGOUT, SAVE, LOAD, SAY, HINT, STATUS, CHANT, and HELP.');
+        self.options.renderEngine.renderString('Available commands are N, NE, NW, E, W, S, SE, SW, LOGOUT, SAVE, LOAD, SAY, HINT, STATUS, CHANT, and HELP.');
     };
 
     this.showStatus = function (){
@@ -97,7 +97,7 @@ function GameHandler($inElt, options) {
         self.options.renderEngine.renderString(self.currentPosition.id);
     };
 
-    this.say = function(target) {        
+    this.say = function(target) {         
         if(self.inQuest) {
             if(self.currentPosition.quest.answer.toLowerCase().search(target.toLowerCase()) >= 0 ) {
                 self.inQuest = false;
@@ -114,10 +114,7 @@ function GameHandler($inElt, options) {
                 self.options.renderEngine.renderString('Your hint is: ' + self.currentPosition.quest.hint + '.');
         }
         else {
-            if(target)
-                alert('don\'t know what ' + target + ' is.');
-            else
-                self.options.renderEngine.renderString(target);
+            self.options.renderEngine.renderString(target);
         }
     };
 
