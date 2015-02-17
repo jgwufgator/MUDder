@@ -122,7 +122,7 @@ function GameHandler($inElt, options) {
     this.move = function(moveDirection){
         var movementPossible = false;
         if(self.inQuest) {
-            self.options.renderEngine.renderString('You may not leave the area until you solve the current room\'s quest!');
+            self.options.renderEngine.renderString('You may not leave the area until you solve the current area\'s quest!');
             return;
         }
         if(!self.firstMove)            
@@ -147,7 +147,7 @@ function GameHandler($inElt, options) {
                 self.occupantsFireBase = new Firebase(roomUrl + '/players');
                 if(self.currentPosition.quest && !self.playerData.questsSolved[self.currentPosition.id]) {
                     self.inQuest = true;
-                    self.options.renderEngine.renderString('New quest:  ' + self.currentPosition.quest.riddle + '.  \'SAY\' the answer!');
+                    self.options.renderEngine.renderString('Answer this riddle:  ' + self.currentPosition.quest.riddle + '.');
                 }
                 self.occupantsFireBase.on('child_added', function(snapshot) {
                     var newPlayerId = snapshot.name();
