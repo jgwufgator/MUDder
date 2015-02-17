@@ -116,6 +116,8 @@ function GameHandler($inElt, options) {
         else {
             if(target)
                 alert('don\'t know what ' + target + ' is.');
+            else
+                self.options.renderEngine.renderString(target);
         }
     };
 
