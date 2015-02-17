@@ -139,7 +139,7 @@ function GameHandler($inElt, options) {
             self.roomFireBase = new Firebase(roomUrl);
             self.roomFireBase.once('value', function(snap) {
                 self.currentPosition = snap.val();
-                self.roomFireBase.child('players').child(self.options.authData.uid).set(authData.username);
+                self.roomFireBase.child('players').child(self.options.authData.uid).set(self.options.authData.username);
                 self.playerData.roomsVisited[self.currentPosition.id] = true;
                 self.options.renderEngine.render(self.currentPosition, self.firstMove ? null : previousRoom);                
                 self.previousRoom = previousRoom;
