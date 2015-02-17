@@ -63,7 +63,7 @@ function RenderEngine($outputDiv, $canvasElt) {
 	};
 
 	this.renderString = function(s) {
-		self.$outputDiv.append('<p class="js-refusal js-msg">' + s+ '</p>');
+		self.$outputDiv.append('<p class="js-msg js-standard-msg">' + s+ '</p>');
 		self.scrollToBottom();
 	};
 

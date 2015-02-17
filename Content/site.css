@@ -89,3 +89,7 @@ p {
 	background-color: black;
 	overflow: auto;
 }
+
+.js-standard-msg {
+	color: #00cc00;
+}

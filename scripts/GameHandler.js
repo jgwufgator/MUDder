@@ -3,7 +3,7 @@ function GameHandler($inElt, options) {
     this.$elt = $inElt;
     this.options = options;
     this.$commandInput = $inElt.find('.js-command-input');
-    this.playerData = { roomsVisited: [], questsSolved: [] };
+    this.playerData = { roomsVisited: [], questsSolved: [], experience: 0, runes: [] };
     this.roomFireBase = null;
     this.occupantsFireBase = null;
 
@@ -57,17 +57,40 @@ function GameHandler($inElt, options) {
             case 'HELP':
                 self.showHelp();
                 break;
+            case 'CHANT':
+                self.chant(input.target);
+                break;
             default:
-                alert('don\'t know what ' + input.action + ' is.  Target is ' + input.target);
+                self.say(input.action);
+                break;
         }
     };
 
     this.showHelp = function() {
-        self.options.renderString('Available commands are N, NE, NW, E, W, S, SE, SW, LOGOUT, SAVE, LOAD, SAY, HINT, STATUS, and HELP.');
+        self.options.renderString('Available commands are N, NE, NW, E, W, S, SE, SW, LOGOUT, SAVE, LOAD, SAY, HINT, STATUS, CHANT, and HELP.');
     };
 
     this.showStatus = function (){
-        self.options.renderEngine.renderString('TODO : implement showStatus');
+         self.options.renderEngine.renderString(self.playerData.experience + ' experience');
+         self.options.renderEngine.renderString('Rooms visited: ' + Object.keys(self.playerData.roomsVisited).length + '\r\n');
+        var statusString = 'Runes: ';
+        if(self.playerData.runes.length > 0) {
+            for(var i = 0; i < self.playerData.runes.length; i++){
+                statusString += '"' + self.playerData.runes[i] + '"';
+                if(i != self.playerData.runes.length - 1)
+                    statusString += ", ";
+                else
+                    statusString += ".\r\n";
+            }
+            if(self.playerData.runes.length === 12)
+            {
+                self.options.renderEngine.renderString('Unscramble the runes and "CHANT" the secret incantation!');
+            }
+        }
+        else
+            statusString += 'none.';
+
+        self.options.renderEngine.renderString(statusString);
     };
 
     this.showCoordinates = function() {
@@ -77,19 +100,29 @@ function GameHandler($inElt, options) {
     this.say = function(target) {        
         if(self.inQuest) {
             if(self.currentPosition.quest.answer.toLowerCase().search(target.toLowerCase()) >= 0 ) {
-                self.options.renderEngine.renderString('You have solved this quest!  Your reward is ' + self.currentPosition.quest.reward + '.');
                 self.inQuest = false;
                 self.playerData.questsSolved[self.currentPosition.id] = true;
+                self.playerData.experience += 1;
+                self.options.renderEngine.renderString('You have solved this quest!');
+                if(self.currentPosition.quest.id != 5) {
+                    self.playerData.runes.push(self.currentPosition.quest.reward);
+                    self.options.renderEngine.renderString('Your reward is a "' + self.currentPosition.quest.reward + '" rune and +1 experience.');
+                }
+                self.options.renderEngine.renderString('You may now leave the area.');                  
             }
             else if(target.toLowerCase() == 'hint')
                 self.options.renderEngine.renderString('Your hint is: ' + self.currentPosition.quest.hint + '.');
+        }
+        else {
+            if(target)
+                alert('don\'t know what ' + target + ' is.');
         }
     };
 
     this.move = function(moveDirection){
         var movementPossible = false;
         if(self.inQuest) {
-            self.options.renderEngine.renderRefusal('You may not leave the area until you solve the current room\'s quest!');
+            self.options.renderEngine.renderString('You may not leave the area until you solve the current room\'s quest!');
             return;
         }
         if(!self.firstMove)            
@@ -112,7 +145,7 @@ function GameHandler($inElt, options) {
                 self.options.renderEngine.render(self.currentPosition, self.firstMove ? null : previousRoom);                
                 self.previousRoom = previousRoom;
                 self.occupantsFireBase = new Firebase(roomUrl + '/players');
-                if(self.currentPosition.quest) {
+                if(self.currentPosition.quest && !self.playerData.questsSolved[self.currentPosition.id]) {
                     self.inQuest = true;
                     self.options.renderEngine.renderString('New quest:  ' + self.currentPosition.quest.riddle + '.  \'SAY\' the answer!');
                 }
@@ -152,14 +185,18 @@ function GameHandler($inElt, options) {
     };
 
     this.saveGame = function() {
+        self.options.renderEngine.renderString('Saving...');
         var fb = new Firebase(self.options.firebaseUrl + '/users/' + self.options.authData.uid);        
         var gameState =
         {
             roomsVisited: self.playerData.roomsVisited,
             currentRoom: self.currentPosition.id,
-            questsSolved: self.playerData.questsSolved
+            questsSolved: self.playerData.questsSolved,
+            experience: self.playerData.experience,
+            runes: self.playerData.runes
         };
-        fb.set(gameState);    
+        fb.set(gameState);
+        self.options.renderEngine.renderString('Saved.');
     };
 
     this.loadGame = function() {
@@ -196,5 +233,16 @@ function GameHandler($inElt, options) {
     this.refresh = function() {
         var removePlayerFromRoomFB = new Firebase(self.options.firebaseUrl + 'rooms/' + previousRoom.id + '/players/' + self.options.authData.uid);
         removePlayerFromRoomFB.remove();
+    };
+
+    self.chant = function(target) {
+        var chantUrl = self.options.firebaseUrl + 'rooms/' + target;
+        var fb = new Firebase(chantUrl);
+        fb.once('value', function(snap) {
+            if(snap.exists()) {
+                var treasureRoom = snap.val();
+                self.options.renderEngine.renderString('You won.  Yippee!');
+            }            
+        });
     };
 }
