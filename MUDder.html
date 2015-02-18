@@ -72,9 +72,12 @@
 	$(window).resize(function() {
   		mudderResizeHandler();
 	});
-
 	mudderResizeHandler();
 
+	$(window).bind('beforeunload', function(e) {
+    if (authData) {
+    	return 'If you leave, you will lose your progress... Are you sure?';
+	}});
 
 	var position = { x: 6, y: 14, z: 0};
 	
@@ -99,8 +102,5 @@
 	});
 	gameHandler.start();
 
-	$(window).bind('beforeunload', function(e) {
-    if (1) {
-    	return 'If you leave, you will lose your progress... Are you sure?';
-	}});
+	
 </script>
