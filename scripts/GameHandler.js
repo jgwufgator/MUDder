@@ -10,12 +10,12 @@ function GameHandler($inElt, options) {
     this.start = function () {
         //self.options.renderEngine.drawBackground(self.options.renderEngine.pattern);
         self.firstMove = true;
-        self.$elt.on('keypress', '.js-command-input', self.handleCommandInput);
+        self.$elt.on('keyup', '.js-command-input', self.handleCommandInput);
         self.move(null, true);        
     };
 
     this.handleCommandInput = function(e) {
-        if(e.charCode != 13)
+        if(e.keyCode != 13)
             return;
 
         var input = options.parser.parse(e.target.value);        
@@ -99,7 +99,7 @@ function GameHandler($inElt, options) {
 
     this.say = function(target) {         
         if(self.inQuest) {
-            if(self.currentPosition.quest.answer.toLowerCase().search(target.toLowerCase()) >= 0 ) {
+            if(self.currentPosition.quest.answer.toLowerCase().search(target.toLowerCase()) >= 0 && target !== null && target.length > 0) {
                 self.inQuest = false;
                 self.playerData.questsSolved[self.currentPosition.id] = true;
                 self.playerData.experience += 1;
