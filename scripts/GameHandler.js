@@ -9,8 +9,10 @@ function GameHandler($inElt, options) {
 
     this.start = function () {
         //self.options.renderEngine.drawBackground(self.options.renderEngine.pattern);
+        debugger;
         self.firstMove = true;
         self.$elt.on('keyup', '.js-command-input', self.handleCommandInput);
+        self.loadGame();
         self.move(null, true);        
     };
 
@@ -39,12 +41,12 @@ function GameHandler($inElt, options) {
             case 'LOGOUT':
                 self.logout();
                 break;
-            case 'SAVE':
-                self.saveGame();
-                break;
-            case 'LOAD':
-                self.loadGame();
-                break;
+            // case 'SAVE':
+            //     self.saveGame();
+            //     break;
+            // case 'LOAD':
+            //     self.loadGame();
+            //     break;
             case 'SAY':
                 self.say(input.target);
                 break;
@@ -67,7 +69,7 @@ function GameHandler($inElt, options) {
     };
 
     this.showHelp = function() {
-        self.options.renderEngine.renderString('Available commands are N, NE, NW, E, W, S, SE, SW, LOGOUT, SAVE, LOAD, SAY, HINT, STATUS, CHANT, and HELP.');
+        self.options.renderEngine.renderString('Available commands are N, NE, NW, E, W, S, SE, SW, LOGOUT, SAY, HINT, STATUS, CHANT, and HELP.');
     };
 
     this.showStatus = function (){
@@ -164,6 +166,7 @@ function GameHandler($inElt, options) {
                 });
             });            
             self.firstMove = false;
+            self.saveGame();
         }
         else
         {
@@ -184,7 +187,7 @@ function GameHandler($inElt, options) {
     };
 
     this.saveGame = function() {
-        self.options.renderEngine.renderString('Saving...');
+        //self.options.renderEngine.renderString('Saving...');
         var fb = new Firebase(self.options.firebaseUrl + '/users/' + self.options.authData.uid);        
         var gameState =
         {
@@ -195,11 +198,11 @@ function GameHandler($inElt, options) {
             runes: self.playerData.runes
         };
         fb.set(gameState);
-        self.options.renderEngine.renderString('Saved.');
+        //self.options.renderEngine.renderString('Saved.');
     };
 
     this.loadGame = function() {
-        self.options.renderEngine.renderString('LOADING...');
+        //self.options.renderEngine.renderString('LOADING...');
         var fb = new Firebase(self.options.firebaseUrl + '/users/' + self.options.authData.uid);
         fb.once('value', function(dataSnapshot) {
             var gameState = dataSnapshot.val();
